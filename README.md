@@ -131,7 +131,7 @@ You can fix meta data of blog in `/gatsby-meta-config.js` file.
 
 ### 5. Publish with [netlify](https://netlify.com)
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/JaeYeopHab/gatsby-starter-bee)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/HaehunLee/copotter-blog)
 
 :bulb: if you want to deploy github pages, add following script to package.json
 
