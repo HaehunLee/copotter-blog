@@ -144,3 +144,68 @@ function charCount(str){
     return result
 }
 ```
+
+---
+
+### 5. 되돌아 보기와 리팩터
+=> 효율성과 가독성을 되새기며, 한줄 한줄 코드를 되돌아 본다.
+    - 결과를 확인할 수 있는가?
+    - 결과를 다른 방식으로 도출할 수 있는가?
+    - 해결한 방법 외에 생각나는 다른 접근 방식이 있는가?
+    - 한눈에 보고 이해할 수 있는가?
+    - 결과나 방법을 다른 문제에도 적용할 수 있는가?
+    - 해결책의 성능을 향상시킬 수 있는가? => 시간 복잡도와 공간 복잡도를 통해서...
+    - 다른 사람들은 이 문제를 어떻게 해결하는가?
+
+```js
+function charCount(str) {
+    var obj ={}
+    for (var i =0; i < str.length; i++) {
+        var char = str[i].toLowerCase();
+        if(/[a-z0-9]/.test(char)) { // 소문자, 숫자인지 체크.
+            if (obj[char] > 0){
+                obj[char]++;
+            } else {
+                obj[char] = 1;
+            };
+        }
+    }
+    return obj;
+}
+
+// refactoring
+function charCount(str) {
+    var obj ={}
+    // for of 문을 이용하여 불필요한 i를 지움.
+    // for (var i =0; i < str.length; i++) {
+    for (var char of str) {
+        char = char.toLowerCase();
+        // 소문자, 숫자인지 체크.
+        if (isAlphaNumeric(char)) {
+        // if(/[a-z0-9]/.test(char)) { 
+            obj[char] = ++obj[char] || 1;
+            // if (obj[char] > 0){
+            //     obj[char]++;
+            // } else {
+            //     obj[char] = 1;
+            // };
+        }
+    }
+    return obj;
+}
+
+// 성능이나 브라우저 이슈가 있는 정규표현식보다, charCodeAt()등의 다른 방법을 채택해본다.
+// 분리된 함수를 사용하여 가독성을 높인다.
+function isAlphaNumeric(char) {
+    var code = char.charCodeAt();
+    if (!(code > 47 && code < 58) &&    // numeric
+        !(code > 64 && code < 91) &&    // upper alpah
+        !(code > 96 && code < 123)) {   // lower alpha
+            return false
+        }
+        return true
+    )
+}
+```
+
+ 
